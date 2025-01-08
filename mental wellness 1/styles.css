@@ -904,7 +904,7 @@ position: relative;
 .carousel {
   display: flex;
 overflow: hidden;
-
+width: 70%;
 
 }
 
