@@ -15,6 +15,7 @@ body {
   margin-bottom: -200vw;
  
 }
+
 .image{
   height: 51vw;
   width: 24vw;
@@ -96,9 +97,11 @@ header {
    
 
   }
-.navbar{
-  margin-top: 30vw;
+  .navbar {
+    margin-top: 7vw;
+    margin-left: -100px;
 }
+
   .navbar li {
     font-size: xx-small;
     margin: 6px 6px;
@@ -154,11 +157,7 @@ footer {
     }
 }
 /* k wellness tips*/
-#wellness-tips {
-  text-align: center;
-  margin: 1rem 1rem;
-  width: 53vw;
-}
+
 
 #daily-tip {
   font-size: 1.2rem;
@@ -462,6 +461,9 @@ background-color: #4CAF50;
 color: white;
 cursor: pointer;
 border-radius: 5px;
+height: 36px;
+margin: 12px;
+
 }
 
 #search-btn:hover {
@@ -700,6 +702,7 @@ input[type="submit"]:hover {
 
 .a {
   margin-top: 100px;
+  width: 1315px;
 }
 
 /* Media Queries for Mobile Devices */
@@ -781,17 +784,16 @@ input[type="submit"]:hover {
   }
   header {
       padding: 8px;
-      width: 383px;
-      height: 150px;
+      width: 406px;
+      height: 60px;
   }
-.rightimage {
-  
-  width: 191px;
-  height: 400px;
-  margin-left: 50vw ;
-  margin-bottom: 40vw;
-  margin-top: -140vw;
-  padding-left: 1vw;
+  .rightimage {
+    width: 196px;
+    height: 398px;
+    margin-left: 48vw;
+    margin-bottom: 4vw;
+    margin-top: -138vw;
+    padding-left: 3vw;
 }
 .rightimage .side{
   width: 90px;
@@ -821,6 +823,7 @@ section .example{
       
   }
    h1{
+    margin-top: -50px;
      font-size: small;
    }
   section {
@@ -849,7 +852,7 @@ section .example{
   footer {
       font-size: 12px;
       padding: 8px;
-      width: 383px;
+      width: 406px;
       height: 100px;
   
       
@@ -859,7 +862,7 @@ section .example{
 }
 /*  k About Section Styles */
 #about {
-width:94vw;
+width:97vw;
 background: #f9f9f9;
 text-align: center;
 padding: 10px;
@@ -899,8 +902,10 @@ position: relative;
 }
 
 .carousel {
+  display: flex;
 overflow: hidden;
-width: 70%;
+
+
 }
 
 .team-member {
@@ -1034,7 +1039,7 @@ background: #45a049;
 
 .resource-card {
 background: #fff;
-padding: 20px;
+padding: 55px;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 margin: 10px;

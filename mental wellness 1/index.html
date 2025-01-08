@@ -11,16 +11,21 @@
        
       }
      
-      
+      #wellness-tips {
+  text-align: center;
+  margin: 1rem 1rem;
+  width: 53vw;
+}
       section{
-        background-image: url(e.jpg);
+        background-image: url(q.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-attachment: fixed;
        
       }
       section p{
-        color: #45a049;
+        color: gray;
+        
       }
       h1 {
         color: white;
@@ -80,12 +85,12 @@
 
       #start-memory-game {
     padding: 10px 20px;
-    background-color: #4caf50;
+    background-color: black;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 10px;
     transition: background-color 0.3s;
 }
 
@@ -163,6 +168,53 @@ button:hover {
 #meditation p{
   padding: 20px 0;
 }
+#calm-catcher {
+            text-align: center;
+        }
+
+        #game-area {
+            position: relative;
+            width: 375px;
+            height: 400px;
+            margin: 20px auto;
+            border: 2px solid #45a049;
+            background-color: #e0f7fa;
+            overflow: hidden;
+        }
+
+        #basket {
+            position: absolute;
+            bottom: 10px;
+            width: 60px;
+            height: 20px;
+            background-color: black;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .item {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background-color: yellow;
+            text-align: center;
+            line-height: 30px;
+            font-size: 12px;
+            color: black;
+            border-radius: 50%;
+            left: 50%;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 @media screen and (max-width: 480px) {
 #game-grid{
   width: 130px;
@@ -194,6 +246,26 @@ button:hover {
 }
 .lol{
   font-size: 30px;
+}
+#wellness-tips {
+    text-align: center;
+    margin: 3rem 0rem;
+    width: 62vw;
+}
+#game-area {
+    position: relative;
+    width: 152px;
+    height: 318px;
+    margin: 20px auto;
+    border: 2px solid #45a049;
+    background-color: #e0f7fa;
+    overflow: hidden;
+}
+.a{
+  width: 406px;
+}
+h1{
+  font-size: 25px;
 }
 }
 
@@ -240,16 +312,26 @@ button:hover {
 
         <p>Attempts: <span id="attempts">0</span></p>
     </div>
-    
-    
+    <br><br> <br><br><b  class="lol">#GAME 3</b><br><br><br><br>
+    <div id="calm-catcher">
+      <h2>Calm Catcher</h2>
+      <div id="game-area">
+          <div id="basket"></div>
+      </div>
+      <p>Score: <span id="catcher-score">0</span></p>
+
+      <div class="button-container">
+          <button id="start-btn">Start Game</button>
+          <button id="end-btn" disabled>End Game</button>
+      </div>
+  </div>
       <script src="cards.js">
     </script>
   </div>
 
     <section>
         <h2>Welcome to the Mental Wellness Website</h2>
-        <p>We are committed to providing valuable information and resources to support mental wellness. Learn how to take care of your mind and live a fulfilling, balanced life.</p>
-        <p>Your mental health companion. Track your moods, access resources, and find peace.</p>
+        <p>Welcome to our Mental Wellness homepage, a dedicated space to support your journey toward emotional and psychological well-being. Here, we believe that mental health is just as important as physical health, and we are committed to providing resources, tips, and guidance to help you achieve balance and resilience in your daily life. Whether you’re looking for ways to manage stress, improve your mood, or strengthen your coping skills, you’ll find a wealth of information and practical tools to empower you. Join us in exploring strategies for mental wellness, fostering self-care, and cultivating a mindset that supports long-term emotional health.</p>
     </section>
 
     <section id="assessment">
@@ -283,9 +365,26 @@ button:hover {
                     <source src="meditation.mp3" type="audio/mpeg" />
                   Your browser does not support the audio element.
                 </audio>
-                <canvas id="audio-visualizer"></canvas>
+                <!-- <canvas id="audio-visualizer"></canvas> -->
             </div>
             </section> 
+            <!-- <audio id="meditation-audio" controls>
+    <source src="meditation.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+</audio> -->
+<script>
+  window.onload = function() {
+    // Play the audio automatically
+    const meditationAudio = document.getElementById("meditation-audio");
+    meditationAudio.play();
+
+    // Remove the entire meditation section from the DOM
+    const meditationSection = document.getElementById("meditation");
+    if (meditationSection) {
+        meditationSection.remove();
+    }
+};
+</script>
            
           <script src="breathing.js"></script>
 
@@ -385,5 +484,83 @@ function checkGuess() {
 }
 
     </script>
+     <script>
+      const gameArea = document.getElementById("game-area");
+      const basket = document.getElementById("basket");
+      const scoreDisplay = document.getElementById("catcher-score");
+      const startButton = document.getElementById("start-btn");
+      const endButton = document.getElementById("end-btn");
+
+      let score = 0;
+      let gameInterval;
+      let spawnInterval;
+      let gameRunning = false;
+
+      function moveBasket(event) {
+          if (!gameRunning) return;
+          const basketWidth = basket.offsetWidth;
+          const areaWidth = gameArea.offsetWidth;
+
+          let newLeft = parseInt(basket.style.left || "50%");
+          if (event.key === "ArrowLeft" && newLeft > 0) {
+              basket.style.left = newLeft - 20 + "px";
+          } else if (event.key === "ArrowRight" && newLeft + basketWidth < areaWidth) {
+              basket.style.left = newLeft + 20 + "px";
+          }
+      }
+
+      function spawnItem() {
+          const item = document.createElement("div");
+          item.classList.add("item");
+          item.textContent = Math.random() > 0.5 ? "Positive" : "Negative";
+          item.style.left = Math.random() * (gameArea.offsetWidth - 30) + "px";
+          item.style.top = "0px";
+
+          gameArea.appendChild(item);
+
+          const fallInterval = setInterval(() => {
+              let top = parseInt(item.style.top);
+              if (top >= gameArea.offsetHeight - 50) {
+                  const basketLeft = basket.offsetLeft;
+                  const basketRight = basket.offsetLeft + basket.offsetWidth;
+                  const itemLeft = item.offsetLeft;
+                  const itemRight = item.offsetLeft + item.offsetWidth;
+
+                  if (itemLeft < basketRight && itemRight > basketLeft) {
+                      if (item.textContent === "Positive") score++;
+                      else score--;
+                      scoreDisplay.textContent = score;
+                  }
+
+                  clearInterval(fallInterval);
+                  item.remove();
+              } else {
+                  item.style.top = top + 5 + "px";
+              }
+          }, 50);
+      }
+
+      function startGame() {
+          gameRunning = true;
+          score = 0;
+          scoreDisplay.textContent = score;
+          startButton.disabled = true;
+          endButton.disabled = false;
+          spawnInterval = setInterval(spawnItem, 1000);
+      }
+
+      function endGame() {
+          gameRunning = false;
+          clearInterval(spawnInterval);
+          startButton.disabled = false;
+          endButton.disabled = true;
+          alert("Game Over! Your final score is: " + score);
+      }
+
+      document.addEventListener("keydown", moveBasket);
+
+      startButton.addEventListener("click", startGame);
+      endButton.addEventListener("click", endGame);
+  </script>
 </body>
 </html>
