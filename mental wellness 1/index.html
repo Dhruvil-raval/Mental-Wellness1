@@ -139,6 +139,11 @@ button {
 button:hover {
     background-color: #45a049;
 }
+.lol{
+  color: #555;
+    font-size: 60px;
+    margin-left: 3vw;
+}
 
 #message {
     font-size: 16px;
@@ -149,6 +154,47 @@ button:hover {
 #attempts {
     font-weight: bold;
     font-size: 18px;
+}
+#meditation-audio{
+  width:250px;
+  padding-top: 30px;
+  
+}
+#meditation p{
+  padding: 20px 0;
+}
+@media screen and (max-width: 480px) {
+#game-grid{
+  width: 130px;
+  padding-left: 1px;
+  margin-right: 10px;
+}
+#number-guessing{
+  width: 90px;
+  height: 300px;
+}
+#number-guessing h2 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#number-guessing p {
+    font-size: 13px;
+    color: #555;
+}
+#guess {
+    margin-left: -27px;
+    width: 121px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+.lol{
+  font-size: 30px;
+}
 }
 
     </style>
@@ -174,7 +220,7 @@ button:hover {
         </nav>
     </header>
     <div class="game">
-      <b style="color: #555;font-size: 60px;margin-left: 3vw;">#GAME 1</b>
+      <b  class="lol">#GAME 1</b>
     <div id="memory-game">
       <h2>Memory Match Game</h2>
       <p>Flip the cards to find the matching pairs!</p>
@@ -184,7 +230,7 @@ button:hover {
       <p>Score: <span id="memory-score">0</span></p>
       <button id="start-memory-game">Start Game</button>
     </div>
-      <br><br><br><br><br><b style="color: #555;font-size: 60px;margin-left: 3vw;">#GAME 2</b><br><br><br><br><br>
+      <br><br><br><br><br><b  class="lol">#GAME 2</b><br><br><br><br><br>
       <div id="number-guessing">
         <h2>Guess the Number</h2>
         <p>Pick a number between 1 and 100:</p>
@@ -195,12 +241,8 @@ button:hover {
         <p>Attempts: <span id="attempts">0</span></p>
     </div>
     
-   <b style="color: #333;"> Guess the Number: A Fun Challenge for the Mind</b><br>
-<p style="font-size: 20px; margin: 10px;">Engage your brain with a number guessing game! Not only is it a fun way to pass the time, but it also encourages focus and concentration—skills that can be helpful when managing mental health challenges like anxiety, depression, or attention difficulties.</p>
-<br><br>
-<b style="color: #333;">How the Game Relates to Mental Well-Being</b><br>
-<p style="font-size: 20px;margin: 10px;">Playing a game like "Guess the Number" can help improve cognitive functioning by promoting concentration, patience, and emotional regulation. Mental health conditions often challenge these abilities, and engaging in simple activities like this can serve as a mindful practice to help improve mental resilience.</p>
-    <script src="cards.js">
+    
+      <script src="cards.js">
     </script>
   </div>
 
